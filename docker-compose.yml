@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql:5.5
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: l2jdb
+    ports:
+      - "3306:3306"
+
+  server:
+    container_name: server
+    # cap_add:
+    #   - SYS_NICE
+    build:
+      context: ./.docker-files
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "7777:7777"
+      - "2106:2106"
+    volumes:
+      - ./.docker-files/auto_installer.exp:/server/tools/auto_installer.exp
+      - ./.docker-files/entrypoint.sh:/entrypoint.sh
+      - ./.docker-files/supervisord.conf:/etc/supervisord.conf
+    # command: tail -f /dev/null

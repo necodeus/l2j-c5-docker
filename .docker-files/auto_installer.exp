@@ -1,0 +1,51 @@
+cd /server/tools
+
+spawn /server/tools/./database_installer.sh
+
+# LOGIN SERVER
+
+expect "Please enter MySQL Login Server hostname"
+send "db\r"
+
+expect "Please enter MySQL Login Server database name"
+send "l2jdb\r"
+
+expect "Please enter MySQL Login Server user"
+send "root\r"
+
+expect "Please enter MySQL Login Server root's password"
+send "root\r"
+
+# GAME SERVER
+
+expect "Please enter MySQL Game Server hostname"
+send "db\r"
+
+expect "Please enter MySQL Game Server database name"
+send "l2jdb\r"
+
+expect "Please enter MySQL Game Server user"
+send "root\r"
+
+expect "Please enter MySQL Game Server root's password"
+send "root\r"
+
+expect "Shall i generate config file database_installer.rc?"
+send "n\r"
+
+expect "Do you want to make a backup copy of your LSDB?"
+send "n\r"
+
+expect "LOGINSERVER DB install type"
+send "f\r"
+
+expect "Do you want to make a backup copy of your GSDB?"
+send "n\r"
+
+expect "GAMESERVER DB install type"
+send "f\r"
+
+expect "Should i parse updates files?"
+send "y\r"
+
+interact
